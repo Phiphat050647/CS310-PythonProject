@@ -17,15 +17,15 @@ def inputmenu() : # Enter word hook showmenu
         menu = input(str("showmenu : ")).upper()
 
         if menu == "S" :
-            print("Work : inputmenu go to Main Menu ")
+            shopping()
             menu_check = False
-        elif menu == "C" :
-            print("Work : inputmenu go to Check Stock")
+        elif menu == "C" : #Check Stock
+            showmenu()
             menu_check = False
         elif menu == "A" :
             print("Work : inputmenu go to All orders")
             menu_check = False
-        elif menu == "E" :
+        elif menu == "E" : #Exit
             print("Work : inputmenu go to Exit")
             menu_check = False
 
@@ -34,6 +34,41 @@ def inputmenu() : # Enter word hook showmenu
 # # #First Function  runtime # # #
 
           
-            
-showmenu()
-inputmenu()
+def shopping() : 
+    with open(r"C:\Users\NATE\Desktop\CS310-PythonProject\Datapacks\datalist.txt") as file:
+        resource = file.read().splitlines()
+    
+    print("-"*50)
+    print("%-2s %s %-10s %-19s %-2s %s %2s"% ("|","Code","|","Food Menu","|","Price","|"))
+
+    '''for i in range(len(resource)) :
+        resource_context = resource[i]
+        print(resource_context.replace(' ',' '*20))
+        #print(resource[i])
+        print("-"*50)'''
+
+    for i in range(len(resource)) : # ดึงเอา txt resource splitlines() 
+        #print(resource[i]) #debug log to text
+        
+        resource_conlist = resource[i] # แปลง text เป็น List 
+        resource_conlist = list(resource_conlist.split(" ")) # แปลง text เป็น List 
+
+        print("%-2s %s %-10s %-19s %-2s %s %2s"% ("",resource_conlist[0],"",resource_conlist[1],"",resource_conlist[2],""))
+
+        #print(resource[i])
+        #print("%-2s %s %-10s %-19s %-2s %s %2s"% ("|","Code","|","Food Menu","|","Price","|"))
+        print("-"*50)
+
+
+
+#def order() :
+        
+#def stock() :
+
+
+
+
+
+############################################################
+showmenu() # First Run times! 1
+inputmenu() # First Run times!  2

@@ -40,23 +40,14 @@ def shopping() :
     
     print("-"*50)
     print("%-2s %s %-10s %-19s %-2s %s %2s"% ("|","Code","|","Food Menu","|","Price","|"))
-
-    '''for i in range(len(resource)) :
-        resource_context = resource[i]
-        print(resource_context.replace(' ',' '*20))
-        #print(resource[i])
-        print("-"*50)'''
+    
 
     for i in range(len(resource)) : # ดึงเอา txt resource splitlines() 
-        #print(resource[i]) #debug log to text
         
         resource_conlist = resource[i] # แปลง text เป็น List 
         resource_conlist = list(resource_conlist.split(" ")) # แปลง text เป็น List 
 
         print("%-2s %s %-10s %-19s %-2s %s %2s"% ("",resource_conlist[0],"",resource_conlist[1],"",resource_conlist[2],""))
-
-        #print(resource[i])
-        #print("%-2s %s %-10s %-19s %-2s %s %2s"% ("|","Code","|","Food Menu","|","Price","|"))
         print("-"*50)
 
 

@@ -1,0 +1,11 @@
+list_of_strings = ['bobby', 'hadz', '.com']
+
+result = ' '.join(list_of_strings)
+print(result)  
+
+# ---------------------------------------------
+
+list_of_numbers = [55, 10, 44]
+
+result = ' '.join(str(item) for item in list_of_numbers)
+print(result) 

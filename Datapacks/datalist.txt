@@ -1,0 +1,4 @@
+1 pizza 100
+2 apple 200
+3 Guancamole 300
+4 Quesadilla 400

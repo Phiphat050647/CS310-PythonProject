@@ -30,6 +30,7 @@ def inputmenu() : # Enter word hook showmenu
             menu_check = False
 
 
+
 # # #First Function  runtime # # #
 
           

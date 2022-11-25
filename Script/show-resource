@@ -2,8 +2,11 @@
 
 with open(r"C:\Users\NATE\Desktop\CS310-PythonProject\Datapacks\datalist.txt") as file:
     resource = file.read().splitlines()
+    
 print("-"*50)
 print("%-2s %s %-10s %-19s %-2s %s %2s"% ("|","Code","|","Food Menu","|","Price","|"))
 for i in range(len(resource)) :
-    print("%-2s %s %-10s %-19s %-2s %s %2s"% ("|","Code","|","Food Menu","|","Price","|"))
+    resource_context = resource[i]
+    print(resource_context.replace(' ',' '*20))
+    #print(resource[i])
     print("-"*50)

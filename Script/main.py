@@ -35,19 +35,19 @@ def inputmenu() : # Enter word hook showmenu
 
           
 def shopping() : 
-    with open(r"C:\Users\NATE\Desktop\CS310-PythonProject\Datapacks\datalist.txt") as file:
+    with open(r"Datapacks\datalist.txt") as file:
         resource = file.read().splitlines()
     
     print("-"*50)
     print("%-2s %s %-10s %-19s %-2s %s %2s"% ("|","Code","|","Food Menu","|","Price","|"))
-    
+    print("-"*50)
 
     for i in range(len(resource)) : # ดึงเอา txt resource splitlines() 
         
         resource_conlist = resource[i] # แปลง text เป็น List 
         resource_conlist = list(resource_conlist.split(" ")) # แปลง text เป็น List 
 
-        print("%-2s %s %-10s %-19s %-2s %s %2s"% ("",resource_conlist[0],"",resource_conlist[1],"",resource_conlist[2],""))
+        print("%-3s %-3s %-12s %-17s %-3s %-4s %2s"% ("|",resource_conlist[0],"|",resource_conlist[1],"|",resource_conlist[2],"|"))
         print("-"*50)
 
 

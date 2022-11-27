@@ -33,7 +33,8 @@ def inputmenu() : # Enter word hook showmenu
 
 # # #First Function  runtime # # #
                
-def shopping() : 
+def shopping() :
+    code = []
     with open(r"Datapacks\datalist.txt") as file:
         resource = file.read().splitlines()
     
@@ -44,31 +45,36 @@ def shopping() :
     for i in range(len(resource)) : # ดึงเอา txt resource splitlines() 
         
         resource_conlist = resource[i] # แปลง text เป็น List 
-        resource_conlist = list(resource_conlist.split(",")) # แปลง text เป็น List 
+        resource_conlist = list(resource_conlist.split(",")) # แปลง text เป็น List
+        code.append(resource_conlist[0])
 
         print("%-3s %-3s %-7s %-27s %-3s %-4s %2s"% ("|",resource_conlist[0],"|",resource_conlist[1],"|",resource_conlist[2],"|"))
         print("-"*55)
     
-    order()
+    order(code)
     
-def order() : #ฟังชันก์สั่งออเดอร์ พร้อมบอกจำนวน
+def order(code) : #ฟังชันก์สั่งออเดอร์ พร้อมบอกจำนวน
     input_oder = []
     input_amt = []
     exit = "N"
     while exit != "Y" :
         oder = (input("\nPlease enter your order : "))
         amt = int(input("Please enter the required quantity : "))
-        code, namefood, price, stock  = stock_oder()
-        input_oder.append(oder)
-        input_amt.append(amt)
-        for i in range(len(code)) :
-            if (oder) == (code[i]) :
-                new_stock = int(stock[i]) - amt
-                stock.pop(i)
-                stock.insert(i,new_stock)
-                change_stock(code, namefood, price, stock)
-        exit = input("Would you like to order more? [Y/N]: ").upper()
-        exit = exit
+        if oder in code :
+            code, namefood, price, stock  = stock_oder()
+            input_oder.append(oder)
+            input_amt.append(amt)
+            for i in range(len(code)) :
+                if (oder) == (code[i]) :
+                    new_stock = int(stock[i]) - amt
+                    stock.pop(i)
+                    stock.insert(i,new_stock)
+                    change_stock(code, namefood, price, stock)
+            exit = input("Would you like to order more? [Y/N]: ").upper()
+            exit = exit
+        else :
+            print("Invalid code!!, Please try again")
+            exit = "N"
     checkbill(code, namefood, price, stock, input_oder,input_amt)
     
                 
@@ -117,7 +123,7 @@ def checkbill(code, namefood, price, stock, input_order,input_amt) :
     print("%-38s %7.2f "%("Total", subtotal + (subtotal * 0.07)))
     print(".................................................")
     with open("Datapacks\Receipt.txt","a") as outfile :
-        outfile.write("\n.................................................")
+        outfile.write(".................................................\n")
         outfile.write("                   BU Restaurant                 \n")
         outfile.write("                     Receipt                     \n")
         outfile.write(".................................................\n")

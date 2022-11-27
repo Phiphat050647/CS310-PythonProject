@@ -1,4 +1,4 @@
-D1,pizza,299,-4
+D1,pizza,299,-8
 D2,Fried rice,40,8
 D3,Guancamole,69,10
 D4,Quesadilla,99,10

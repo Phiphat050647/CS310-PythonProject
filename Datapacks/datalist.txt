@@ -1,8 +1,8 @@
-1,pizza,299
-2,Fried rice,40
-3,Guancamole,69
-4,Quesadilla,99
-5,Fried rice,50
-6,Congee with pork,45
-7,Rice porridge with shrimp,60
-8,Rice crispy pork,60
+D1,pizza,299,-4
+D2,Fried rice,40,8
+D3,Guancamole,69,10
+D4,Quesadilla,99,10
+D5,Fried rice,50,10
+D6,Congee with pork,45,10
+D7,Rice porridge with shrimp,60,10
+D8,Rice crispy pork,60,10

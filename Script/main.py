@@ -52,34 +52,97 @@ def shopping() :
     order()
     
 def order() : #ฟังชันก์สั่งออเดอร์ พร้อมบอกจำนวน
-    with open(r"Datapacks\datalist.txt") as file:
+    input_oder = []
+    input_amt = []
+    exit = "N"
+    while exit != "Y" :
+        oder = (input("\nPlease enter your order : "))
+        amt = int(input("Please enter the required quantity : "))
+        code, namefood, price, stock  = stock_oder()
+        input_oder.append(oder)
+        input_amt.append(amt)
+        for i in range(len(code)) :
+            if (oder) == (code[i]) :
+                new_stock = int(stock[i]) - amt
+                stock.pop(i)
+                stock.insert(i,new_stock)
+                change_stock(code, namefood, price, stock)
+        exit = input("Would you like to order more? [Y/N]: ").upper()
+        exit = exit
+    checkbill(code, namefood, price, stock, input_oder,input_amt)
+    
+                
+def stock_oder() :
+    stock = []
+    namefood = []
+    price = []
+    code = []
+    
+    with open("Datapacks\datalist.txt",'r+') as file:
         resource = file.read().splitlines()
         
-    oder_check = True 
-    while oder_check :
-        
-        oder = int(input("Please enter your order : "))
-        amt = int(input("Please enter the required quantity : "))
-        
-    for i in range(len(resource)) : # ดึงเอา txt resource splitlines() 
-        
-        resource_conlist = resource[i] # แปลง text เป็น List 
-        resource_conlist = list(resource_conlist.split(",")) # แปลง text เป็น List 
-        
-        if oder == resource_conlist[0] :
-            total = resource_conlist[3] - amt
-            resource
-            #inplace_change("Datapacks\datalist.txt", resource_conlist[3] , total) เขียนแทนทีไฟล์
-            #เดี๋ยวมาเขียนต่อ
-            
+        for i in range(len(resource)) : # ดึงเอา txt resource splitlines() 
+            resource_conlist = resource[i] # แปลง text เป็น List 
+            resource_conlist = list(resource_conlist.split(",")) # แปลง text เป็น List
+            code.append(resource_conlist[0])
+            namefood.append(resource_conlist[1])
+            price.append(resource_conlist[2])
+            stock.append(resource_conlist[3])
+    return code, namefood, price, stock                  
 
-def stock_change(filename, old_int, new_int):
-    with open(filename) as f:
-        s = f.read()
-        if old_int not in s:
-            
+def change_stock(code, namefood, price, stock ) :
+    with open("Datapacks\datalist.txt",'w') as file:
+        for i in range(len(code)) : # ดึงเอา txt resource splitlines() 
+            file.write("%s%s%s%s%s%s%s\n"% (code[i],',',namefood[i],',',price[i],',',stock[i]))
+    
+def checkbill(code, namefood, price, stock, input_order,input_amt) :
+    print("\n.................................................")
+    print("                   BU Restaurant                 ")
+    print("                     Receipt                     ")
+    print(".................................................")
+    print(" Menu                       QTY         Price    ")
+    print(".................................................")
+    cout = 0
+    subtotal = 0
+    for i in input_order :
+        number = code.index(i)
+        print(" %-27s %s %14.1f\n"%(namefood[number],input_amt[cout],float(price[number]) * float(input_amt[cout])))
+        subtotal += float(price[number]) * float(input_amt[cout])
+        cout += 1
+    discount = (subtotal*0.1)
+    print(".................................................")
+    print("%-38s %7.2f "%("Subtotal", subtotal))
+    print("%-38s %7.2f "%("Discount (10%)",-discount))
+    print("%-38s %7.2f "%("Tax (7%)", subtotal * 0.07))
+    print("%-38s %7.2f "%("Total", subtotal + (subtotal * 0.07)))
+    print(".................................................")
+    with open("Datapacks\Receipt.txt","a") as outfile :
+        outfile.write("\n.................................................")
+        outfile.write("                   BU Restaurant                 \n")
+        outfile.write("                     Receipt                     \n")
+        outfile.write(".................................................\n")
+        outfile.write(" Menu                       QTY         Price    \n")
+        outfile.write(".................................................\n")
+        cout = 0
+        subtotal = 0
+        for i in input_order :
+            number = code.index(i)
+            outfile.write(" %-27s %s %14.1f\n"%(namefood[number],input_amt[cout],float(price[number]) * float(input_amt[cout])))
+            subtotal += float(price[number]) * float(input_amt[cout])
+            cout += 1
+        discount = (subtotal*0.1)
+        outfile.write(".................................................\n")
+        outfile.write("%-38s %7.2f \n"%("Subtotal", subtotal))
+        outfile.write("%-38s %7.2f \n"%("Discount (10%)",-discount))
+        outfile.write("%-38s %7.2f \n"%("Tax (7%)", subtotal * 0.07))
+        outfile.write("%-38s %7.2f \n"%("Total", subtotal + (subtotal * 0.07)))
+        outfile.write(".................................................")
+        
         
            
+            
+        
+
             
         
 

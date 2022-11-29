@@ -13,7 +13,6 @@ def inputmenu() : # Enter word hook showmenu
 
     menu_check = True # check menu list
     while menu_check : # if true is work loop whiles
-
         menu = input(str("\nPlease select the desired Menu : ")).upper()
 
         if menu == "S01" :

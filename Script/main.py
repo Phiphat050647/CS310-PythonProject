@@ -16,13 +16,13 @@ def inputmenu() : # Enter word hook showmenu
 
         menu = input(str("showmenu : ")).upper()
 
-        if menu == "S" :
+        if menu == "S01" :
             shopping()
             menu_check = False
-        elif menu == "C" : #Check Stock
-            showmenu()
+        elif menu == "C01" : #Check Stock
+            check_stock()
             menu_check = False
-        elif menu == "A" :
+        elif menu == "A01" :
             print("Work : inputmenu go to All orders")
             menu_check = False
         elif menu == "E" : #Exit
@@ -145,8 +145,21 @@ def checkbill(code, namefood, price, stock, input_order,input_amt) :
         outfile.write(".................................................")
         
         
-           
-            
+def check_stock():
+    with open(r"Datapacks\datalist.txt") as file:
+        resource = file.read().splitlines()
+    
+    print("-"*55)
+    print("%-2s %s %-15s %-19s %-2s %s %2s"% ("|","Code","|","Food Menu","|","Stock","|"))
+    print("-"*55)
+
+    for i in range(len(resource)) : # ดึงเอา txt resource splitlines() 
+        
+        resource_conlist = resource[i] # แปลง text เป็น List 
+        resource_conlist = list(resource_conlist.split(",")) # แปลง text เป็น List
+
+        print("%-3s %-3s %-7s %-27s %-3s %-4s %2s"% ("|",resource_conlist[0],"|",resource_conlist[1],"|",resource_conlist[3],"|"))
+        print("-"*55)
         
 
             

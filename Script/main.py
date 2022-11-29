@@ -14,17 +14,17 @@ def inputmenu() : # Enter word hook showmenu
     menu_check = True # check menu list
     while menu_check : # if true is work loop whiles
 
-        menu = input(str("showmenu : ")).upper()
+        menu = input(str("\nPlease select the desired Menu : ")).upper()
 
         if menu == "S01" :
             shopping()
-            menu_check = False
+            menu_check = True
         elif menu == "C01" : #Check Stock
             check_stock()
-            menu_check = False
+            menu_check = True
         elif menu == "A01" :
             print("Work : inputmenu go to All orders")
-            menu_check = False
+            menu_check = True
         elif menu == "E" : #Exit
             print("Work : inputmenu go to Exit")
             menu_check = False

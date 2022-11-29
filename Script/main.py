@@ -10,9 +10,10 @@ def showmenu() : #Display Interface Menu (Funtction)
 
   
 def inputmenu() : # Enter word hook showmenu
-
     menu_check = True # check menu list
     while menu_check : # if true is work loop whiles
+        print("")
+        showmenu()
         menu = input(str("\nPlease select the desired Menu : ")).upper()
 
         if menu == "S01" :
@@ -23,6 +24,7 @@ def inputmenu() : # Enter word hook showmenu
             menu_check = True
         elif menu == "A01" :
             print("Work : inputmenu go to All orders")
+            allorder()
             menu_check = True
         elif menu == "E" : #Exit
             print("Work : inputmenu go to Exit")
@@ -147,7 +149,7 @@ def checkbill(code, namefood, price, stock, input_order,input_amt) :
 def check_stock():
     with open(r"Datapacks\datalist.txt") as file:
         resource = file.read().splitlines()
-    
+    print("")
     print("-"*55)
     print("%-2s %s %-15s %-19s %-2s %s %2s"% ("|","Code","|","Food Menu","|","Stock","|"))
     print("-"*55)
@@ -160,7 +162,11 @@ def check_stock():
         print("%-3s %-3s %-7s %-27s %-3s %-4s %2s"% ("|",resource_conlist[0],"|",resource_conlist[1],"|",resource_conlist[3],"|"))
         print("-"*55)
         
-
+def allorder():
+    with open("Datapacks\Receipt.txt",'r') as file:
+        resource = file.read()
+        print(resource)
+        
             
         
 
@@ -173,5 +179,4 @@ def check_stock():
 
 
 ############################################################
-showmenu() # First Run times! 1
 inputmenu() # First Run times!  2

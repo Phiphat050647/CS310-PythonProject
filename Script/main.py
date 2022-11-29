@@ -23,7 +23,7 @@ def inputmenu() : # Enter word hook showmenu
             check_stock()
             menu_check = True
         elif menu == "A01" :
-            print("Work : inputmenu go to All orders")
+            print("Work : inputmenu go to All orders\n")
             allorder()
             menu_check = True
         elif menu == "E" : #Exit
@@ -57,8 +57,8 @@ def shopping() :
 def order(code) : #ฟังชันก์สั่งออเดอร์ พร้อมบอกจำนวน
     input_oder = []
     input_amt = []
-    exit = "N"
-    while exit != "Y" :
+    exit = "Y"
+    while exit != "N" :
         oder = (input("\nPlease enter your order : "))
         amt = int(input("Please enter the required quantity : "))
         if oder in code :
@@ -70,12 +70,16 @@ def order(code) : #ฟังชันก์สั่งออเดอร์ พ
                     new_stock = int(stock[i]) - amt
                     stock.pop(i)
                     stock.insert(i,new_stock)
-                    change_stock(code, namefood, price, stock)
+                    print(new_stock)
+                    if new_stock >= 0 :
+                        change_stock(code, namefood, price, stock)
+                    else :
+                        print("\n---This menu is out of stock!!---")  
             exit = input("Would you like to order more? [Y/N]: ").upper()
             exit = exit
         else :
             print("Invalid code!!, Please try again")
-            exit = "N"
+            exit = "Y"
     checkbill(code, namefood, price, stock, input_oder,input_amt)
     
                 
@@ -143,7 +147,6 @@ def checkbill(code, namefood, price, stock, input_order,input_amt) :
         outfile.write("%-38s %7.2f \n"%("Discount (10%)",-discount))
         outfile.write("%-38s %7.2f \n"%("Tax (7%)", subtotal * 0.07))
         outfile.write("%-38s %7.2f \n"%("Total", subtotal + (subtotal * 0.07)))
-        outfile.write(".................................................")
         
         
 def check_stock():
